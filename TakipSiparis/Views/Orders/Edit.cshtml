@@ -1,0 +1,51 @@
+﻿@model TakipSiparis.Models.Orders
+
+<h2>Termin Date</h2>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+@Html.HiddenFor(model => model.ID)
+@Html.HiddenFor(model => model.Category)
+@Html.HiddenFor(model => model.Brand)
+@Html.HiddenFor(model => model.ProductName)
+@Html.HiddenFor(model => model.Amount)
+@Html.HiddenFor(model => model.Price)
+@Html.HiddenFor(model => model.OrderDate)
+@Html.HiddenFor(model => model.PayMeth)
+@Html.HiddenFor(model => model.PaymentDate)
+@Html.HiddenFor(model => model.EstArrival)
+@Html.HiddenFor(model => model.AtchName)
+@Html.TextBoxFor(model => model.TerminDate, new { type = "date" })
+@Html.HiddenFor(model => model.UserName)
+@Html.HiddenFor(model => model.Note)
+@Html.HiddenFor(model => model.Decision)
+
+<hr />
+
+<input type="button" value="Update" onclick="empupdate()" />
+<script type="text/javascript">
+
+    function empupdate() {
+        var ID = $("#ID").val();
+        var Category = $("#Category").val();
+        var Brand = $("#Brand").val();
+        var ProductName = $("#ProductName").val();
+        var Amount = $("#Amount").val();
+        var Price = $("#Price").val();
+        var OrderDate = $("#OrderDate").val();
+        var PayMeth = $("#PayMeth").val();
+        var EstArrival = $("#EstArrival").val();
+        var AtchName = $("#AtchName").val();
+        var TerminDate = $("#TerminDate").val();
+        var PaymentDate = $("#PaymentDate").val();
+        var UserName = $("#UserName").val();
+        var Note = $("#Note").val();
+        var Decision = $("#Decision").val();
+
+        var updateDetatils = { "ID": ID, "Category": Category, "Brand": Brand, "ProductName": ProductName, "Amount": Amount, "Price": Price, "OrderDate": OrderDate, "PaymentDate": PaymentDate,"PayMeth": PayMeth, "EstArrival": EstArrival, "AtchName": AtchName,"TerminDate":TerminDate, "UserName": UserName, "Note": Note, "Decision": Decision }
+        $.post('Edit', updateDetatils, function (data) { if (data == 0) { location: location.href; } }, 'json');
+        $(this).dialog("close");
+        
+    }
+</script>

@@ -1,0 +1,23 @@
+﻿@model TakipSiparis.Models.Decision
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add</h2>
+
+<div class="container">
+
+    @using (Html.BeginForm("Add", "Decisions", FormMethod.Post))
+    {
+        <div class="form-group">
+            @Html.LabelFor(x => x.Decision1)
+            @Html.TextBoxFor(x => x.Decision1, new { @class = "form-control" })
+        </div>
+        
+        <div>
+            <button class="btn btn-success">Add Decision</button>
+        </div>
+
+    }
+</div>

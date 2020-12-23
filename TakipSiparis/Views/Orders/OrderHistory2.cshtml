@@ -1,0 +1,79 @@
+﻿@model List<TakipSiparis.Models.Orders>
+@{
+    ViewBag.Title = "Order History 2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>All Orders</h2>
+
+<div class="container">
+    @using (Html.BeginForm("OrderHistory2", "Orders", FormMethod.Get))
+    {
+        <div class="form-group">
+            <div style="width:25%;float:left">
+                @Html.TextBox("search", null, new { @class = "form-control", @placeholder = "Product name or barcode" })
+
+            </div>
+            <div style="float:left">
+                @Html.ActionLink("search", "OrderHistory2", null, new { @class = "btn btn-info", onclick = "$(this).parents('form').attr('action', $(this).attr('href'));$(this).parents('form').submit();return false;" })
+            </div>
+        </div>
+    }
+</div>
+@{
+    var grid = new WebGrid(source: Model, rowsPerPage: 5);
+    @grid.GetHtml(
+
+    tableStyle: "table table-bordered table-striped",
+    htmlAttributes: new { id = "grid" },
+
+    columns: grid.Columns(
+        grid.Column(columnName: "ID", header: "ID", canSort: false),
+        grid.Column(columnName: "Category", header: "Category"),
+        grid.Column(columnName: "Brand", header: "Brand"),
+        grid.Column(columnName: "ProductName", header: "Product Name"),
+        grid.Column(columnName: "Amount", header: "Amount"),
+        grid.Column(columnName: "Price", header: "Price"),
+        grid.Column(columnName: "OrderDateString", header: "Order Date"),
+        grid.Column(columnName: "PayMeth", header: "Payment Method"),
+        grid.Column(columnName: "PaymentDateString", header: "Payment Date"),
+        grid.Column(columnName: "EstArrivalString", header: "Estimated Arrival"),
+        grid.Column(columnName: "TerminDateString", header: "Termin Date"),
+        grid.Column(columnName: "UserName", header: "Username"),
+        grid.Column(columnName: "Note", header: "Note")
+        )
+    )
+    @Html.Hidden("dir", grid.SortDirection)
+    @Html.Hidden("col", grid.SortColumn)
+}
+<script src="~/Scripts/jquery-3.5.1.min.js"></script>
+<script>
+    $(function () {
+        var dir = $("#dir").val();
+        var col = $("#col").val();
+
+        try {
+            var header = $("th a [href*=" + col + "]");
+            if (dir == "Ascending") {
+                header.text(header.text() + "↑")
+            } if (dir == "Descending") {
+                header.text(header.text() + "↓")
+            }
+        } catch (e) {
+
+        }
+    })
+</script>
+
+@*public List<SelectListItem>
+    CategoryList { get; set; }
+    public List<SelectListItem>
+        BrandList { get; set; }
+        public List<SelectListItem>
+            DecisionList { get; set; }
+            public List<SelectListItem>
+                AttachmentList { get; set; }
+                public List<SelectListItem>
+                    UserList { get; set; }
+                    public List<SelectListItem>
+                        PayMethList { get; set; }
+                        }*@

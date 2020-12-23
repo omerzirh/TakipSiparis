@@ -1,0 +1,63 @@
+﻿@using Microsoft.AspNet.Identity
+@model TakipSiparis.Models.Orders
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add New Order</h2>
+<div class="container">
+    @using (Html.BeginForm("Add", "Orders", FormMethod.Post))
+    {
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("Category")
+            @Html.DropDownListFor(x => x.Category, Model.CategoryList, "Choose a Category", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.Brand)
+            @Html.DropDownListFor(x => x.Brand, Model.BrandList, "Choose a Brand", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.Label("Product Name")
+            @Html.TextBoxFor(x => x.ProductName, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.Amount)
+            @Html.TextBoxFor(x => x.Amount, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.Price)
+            @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Order Date")
+            @Html.TextBoxFor(x => x.OrderDate, new { @class = "form-control", type = "date" })
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Payment Method")
+
+            @Html.DropDownListFor(x => x.PayMeth, Model.PayMethList, "Choose a Payment Method", new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Estimated Arrival Date")
+            @Html.TextBoxFor(x => x.EstArrival, new { @class = "form-control", type = "date" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.Note)
+            @Html.TextBoxFor(x => x.Note, new { @class = "form-control" })
+        </div>
+
+
+
+        <div class="form-group">
+            <button class="btn btn-success">Add Order</button>
+        </div>
+
+    }
+</div>

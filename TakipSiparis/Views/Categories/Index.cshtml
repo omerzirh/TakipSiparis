@@ -1,0 +1,42 @@
+﻿@model IEnumerable<TakipSiparis.Models.Categories>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/FrontEnd/dist/css/adminlte.css" rel="stylesheet" />
+
+<h2>Categories</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>
+                ID
+            </td>
+            <td>
+                Category
+            </td>
+            <td>
+                Note
+            </td>
+            <td>Delete</td>
+            <td>Update</td>
+        </tr>
+
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.ID)</td>
+                <td>@Html.DisplayFor(modelItem => item.CategoryName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Note)</td>
+
+                <td>@Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { onclick = "return confirm('Are you sure?')" })</td>
+                @*<td><a href="/Categories/DeleteGetInfo/@item.ID" class="btn btn-danger">Delete</a></td>*@
+            </tr>
+        }
+    </tbody>
+</table>
+<input style="" type="button" value="Add New Category" onclick="location.href='@Url.Action("Add", "Categories")'" />

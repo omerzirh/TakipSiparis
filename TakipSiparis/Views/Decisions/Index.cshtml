@@ -1,0 +1,38 @@
+﻿@model IEnumerable<TakipSiparis.Models.Decision>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Decisions</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>
+                ID
+            </td>
+            <td>
+                Decision
+            </td>
+           
+            <td>Delete</td>
+            <td>Update</td>
+        </tr>
+
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modele => item.ID)</td>
+                <td>@Html.DisplayFor(modele => item.Decision1)</td>
+                <td>Delete</td>
+                <td>Update</td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+<input class="btn btn-success" style="" type="button" value="Add New Decision" onclick="location.href='@Url.Action("Add", "Decisions")'" />

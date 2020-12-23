@@ -1,0 +1,76 @@
+﻿@model List<TakipSiparis.Models.Orders>
+
+@{
+    ViewBag.Title = "Onaylanmayanlar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Onaylanmayanlar</h2>
+<table class="table" id="orderTable">
+    <thead style="background-color:aliceblue">
+           <tr>
+               <th>ID</th>
+               <th>Category</th>
+               <th>Brand</th>
+               <th>Product Name</th>
+               <th>Amount</th>
+               <th>Price</th>
+               <th>Order Date</th>
+               <th>Payment Method</th>
+               <th>Estimated Arrival</th>
+               <th>User</th>
+               <th>Note</th>
+               <th></th>
+               <th></th>
+           </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>@Html.DisplayFor(x => item.ID)</th>
+                <td>@Html.DisplayFor(x => item.Category)</td>
+                <td>@Html.DisplayFor(x => item.Brand)</td>
+                <td>@Html.DisplayFor(x => item.ProductName)</td>
+                <td>@Html.DisplayFor(x => item.Amount)</td>
+                <td>@Html.DisplayFor(x => item.Price)</td>
+                <td>@Html.DisplayFor(x => item.OrderDate)</td>
+                <td>@Html.DisplayFor(x => item.PayMeth)</td>
+                <td>@Html.DisplayFor(x => item.EstArrival)</td>
+                <td>@Html.DisplayFor(x => item.UserName)</td>
+                <td>@Html.DisplayFor(x => item.Note)</td>
+                <td><input type="submit" name="btn" value="Delete" class="btn btn-danger btnDel" data-id="@item.ID" /></td>
+                <td><a href="/Orders/UpdateEdit/@item.ID" class="btn btn-warning">Update</a></td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+<script src="~/Scripts/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#orderTable").on("click", ".btnDel", function () {
+            var btn = $(this);
+            bootbox.confirm("Are you sure delete" + btn.data("id"), function (result) {
+                if (result) {
+                    var id = btn.data("id");
+                    console.log("delete func")
+                    $.ajax({
+                        type: "POST",
+                        url: "/ordermanagement/Orders/Delete",
+                        data: { id: id },
+                        success: function () {
+
+                            btn.parent().parent().remove();
+                        }
+
+                    });
+                }
+            });
+
+        });
+    });
+
+</script>
+
+

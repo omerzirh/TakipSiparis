@@ -1,0 +1,28 @@
+﻿@model TakipSiparis.Models.Orders
+
+<h2>Payment Date</h2>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+@Html.HiddenFor(model =>model.ID)
+@Html.TextBoxFor(model => model.PaymentDate, new { type = "date" })
+
+
+<hr />
+
+<input type="button" value="Update" onclick="empupdate()" />
+<script type="text/javascript">
+
+    function empupdate() {
+        var ID = $("#ID").val();
+    
+        var PaymentDate = $("#PaymentDate").val();
+   
+
+        var updateDetatils = { "ID": ID, "PaymentDate": PaymentDate }
+        $.post('AddPayment', updateDetatils, function (data) { if (data == 0) { location: location.href; } }, 'json');
+        $(this).dialog("close");
+
+    }
+</script>

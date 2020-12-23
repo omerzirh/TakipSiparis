@@ -1,0 +1,47 @@
+﻿@model List <TakipSiparis.Models.Users>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<table class="table" id="orderTable">
+
+    <thead style="background-color:aliceblue">
+           <tr>
+               <th>ID</th>
+               <th>Username</th>
+               <th>Name</th>
+               <th>Surname</th>
+               <th>Birthdate</th>
+               <th>Email</th>
+               <th>Phone</th>
+               <th>Department</th>
+               <th>Role</th>
+               <th>Password</th>
+              
+           </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>@Html.DisplayFor(x => item.ID)</th>
+                <td>@Html.DisplayFor(x => item.Username)</td>
+                <td>@Html.DisplayFor(x => item.Name)</td>
+                <td>@Html.DisplayFor(x => item.Surname)</td>
+                <td>@Html.DisplayFor(x => item.Birthdate)</td>
+                <td>@Html.DisplayFor(x => item.Email)</td>
+                <td>@Html.DisplayFor(x => item.Phone)</td>
+                <td>@Html.DisplayFor(x => item.Department)</td>
+                <td>@Html.DisplayFor(x => item.Role)</td>
+                <td>@Html.Raw("\u2022\u2022\u2022\u2022\u2022")</td>
+               
+
+
+                <td><input type="submit" name="btn" value="Update" class="btn btn-danger btnDel" data-id="@item.ID" /></td>
+                <td><input type="submit" name="btn" value="Delete" class="btn btn-danger btnDel" data-id="@item.ID" /></td>
+            </tr>
+        }
+    </tbody>
+</table>

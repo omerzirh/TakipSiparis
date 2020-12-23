@@ -1,0 +1,76 @@
+﻿@model TakipSiparis.Models.Orders
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>UpdateEdit</h2>
+@using (Html.BeginForm("UpdateEdit", "Orders", FormMethod.Post, new{ id=Model.ID }))
+{
+    @Html.HiddenFor(x => x.UserName)
+    @Html.HiddenFor(x=>x.Decision)
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.Label("Category")<br />
+        @Html.DisplayFor(x => x.Category)
+        @Html.HiddenFor(x => x.Category)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Brand)<br />
+        @Html.DisplayFor(x => x.Brand)
+        @Html.HiddenFor(x => x.Brand)
+    </div>
+    <div class="form-group">
+        @Html.Label("Order Date") <br />
+         @Html.TextBoxFor(x => x.OrderDate, new { @class = "form-control date-picker", @Value = Model.OrderDate.Value.ToShortDateString(), type = "datetime" })
+    </div>
+    <div class="form-group">
+        @Html.Label("Product Name")
+        @Html.TextBoxFor(x => x.ProductName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Amount)
+        @Html.TextBoxFor(x => x.Amount, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Price)
+        @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.Label("Payment Method")
+
+        @Html.TextBoxFor(x => x.PayMeth, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Estimated Arrival Date")
+
+        @Html.TextBoxFor(x => x.EstArrival, new { @class = "form-control date-picker", @Value = Model.EstArrival.ToShortDateString(), type = "datetime" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Note)
+   
+        @Html.TextBoxFor(x => x.Note, new { @class = "form-control" })
+    </div>
+
+
+
+    <div class="form-group">
+        <button class="btn btn-success">Update</button>
+    </div>
+}
+
+    <script type="text/javascript">
+        $(function () {
+            $(".date-picker").datepicker({
+                dateFormat: 'dd/mm/yy'
+            });
+
+        });
+
+    </script>

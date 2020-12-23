@@ -1,0 +1,41 @@
+﻿@model IEnumerable<TakipSiparis.Models.Brands>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Brands</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>
+                ID
+            </td>
+            <td>
+                Brand
+            </td>
+            <td>
+                Note
+            </td>
+            <td>Delete</td>
+            <td>Update</td>
+        </tr>
+
+
+    </thead>
+    <tbody>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modele =>item.ID)</td>
+            <td>@Html.DisplayFor(modele =>item.BrandName)</td>
+            <td>@Html.DisplayFor(modele =>item.Note)</td>
+            <td>Delete</td>
+            <td>Update</td>
+            
+        </tr>
+    }
+    </tbody>
+</table>
+
+<input class="btn btn-success" style="" type="button" value="Add New Brand" onclick="location.href='@Url.Action("Add", "Brand")'" />
